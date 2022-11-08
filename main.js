@@ -35,7 +35,10 @@ function draw() {
    b=random(255);
    detect_object.detect(video ,gotresults);
    if (Status != "") {
-   
+   if (objects.length==0) {
+    document.getElementById("identified").innerHTML="Baby not Found";
+    song1.play();
+   }
        document.getElementById("status").innerHTML="Status: Objects Detected"
        
     for (let i = 0; i< objects.length; i++) {
@@ -48,7 +51,7 @@ function draw() {
         if (objects[i].label== "person") {
             document.getElementById("identified").innerHTML="Baby Found";
             song1.stop();
-        }else if(objects[i].label!="person"||objects.length==0){
+        }else if(objects[i].label!="person"){
             document.getElementById("identified").innerHTML="Baby not Found";
             song1.play();
         }
